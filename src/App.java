@@ -3,8 +3,12 @@ import java.util.Scanner;
 
 public class App {
 
-    static int somme(int a, int b) {
-        return a + b;
+    public static double somme(double[] nombres) {
+        double total = 0;
+        for (int i = 0; i < nombres.length; i++) {
+            total += nombres[i];
+        }
+        return total;
     }
 
     static int factorielle(int n) {
@@ -42,29 +46,31 @@ public class App {
     }
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         int option = 0;
 
         while (option != 6) {
 
-            System.err.println("1 - Calculer une somme");
-            System.err.println("2 - Calculer la factorielle d'un nombre");
-            System.err.println("3 - Nombre premier ou pas ?");
-            System.err.println("4 - Afficher la table de multiplication");
-            System.err.println("5 - Calculer une puissance");
-            System.err.println("6 - Quitter");
+            System.out.println("1 - Calculer une somme");
+            System.out.println("2 - Calculer la factorielle d'un nombre");
+            System.out.println("3 - Nombre premier ou pas ?");
+            System.out.println("4 - Afficher la table de multiplication");
+            System.out.println("5 - Calculer une puissance");
+            System.out.println("6 - Quitter");
             System.out.print("Choisir une option : ");
-            Scanner scanner = new Scanner(System.in);
             option = scanner.nextInt();
 
             switch (option) {
                 case 1 -> {
-                    System.out.println("Entrer deux nombres : ");
-                    System.out.print("Nombre 1 : ");
-                    int a = scanner.nextInt();
-                    System.out.print("Nombre 2 : ");
-                    int b = scanner.nextInt();
-                    System.out.println("La somme est : " + somme(a, b));
+                    System.out.print("Combien de nombres à additionner ? ");
+                    int taille = scanner.nextInt();
+                    double[] nombres = new double[taille];
+                    for (int i = 0; i < taille; i++) {
+                        System.out.print("Nombre " + (i+1) + " : ");
+                        nombres[i] = scanner.nextDouble();
                     }
+                    System.out.println(somme(nombres));
+                }
                 case 2 -> {
                     System.out.print("Entrer un nombre : ");
                     int n = scanner.nextInt();
